@@ -1,7 +1,11 @@
 @(message: String)
 
-@main("Welcome to Play") {
+@main("Login") {
 
-    @play20.welcome(message, style = "Java")
+    <h1>ログイン画面</h1>
+    ID:<input type="text" name="user_id" /><br>
+    PASSWORD:<input type="password" name="pwd" /><br>
+    <input type="submit" value="ログイン" />
+    <input type="button" value="新規登録" />
 
 }
