@@ -18,27 +18,33 @@ import play.libs.F.*;
 import static play.test.Helpers.*;
 import static org.fest.assertions.Assertions.*;
 
-
-/**
-*
-* Simple (JUnit) tests that can call all parts of a play app.
-* If you are interested in mocking a whole application, see the wiki for more details.
-*
-*/
 public class ApplicationTest {
 
     @Test
-    public void simpleCheck() {
-        int a = 1 + 1;
-        assertThat(a).isEqualTo(2);
+    public void testLoginpage(){
+      Map<String, String> user  = new HashMap<String, String>();
+      user.put("r-tominaga", "207");
+      user.put("ttc", "000");
+      
+
     }
 
     @Test
-    public void renderTemplate() {
-        Content html = views.html.index.render("Your new application is ready.");
+    public void testRenderLoginpage() {
+        Content html = views.html.loginpage.render();
         assertThat(contentType(html)).isEqualTo("text/html");
-        assertThat(contentAsString(html)).contains("Your new application is ready.");
+        assertThat(contentAsString(html)).contains("ログイン画面");
+        assertThat(contentAsString(html)).contains("ログイン");
+        assertThat(contentAsString(html)).contains("新規登録");
     }
 
+    public void testRenderSignup(){
+      Content html = views.html.signup.render();
+      assertThat(contentType(html)).isEqualTo("text/html");
+      assertThat(contentAsString(html)).contains("USER ID");
+      assertThat(contentAsString(html)).contains("USER NAME");
+      assertThat(contentAsString(html)).contains("PASSWORD");
+
+    }
 
 }
