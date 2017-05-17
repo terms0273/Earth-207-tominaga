@@ -36,7 +36,6 @@ public class FakeApp{
   public static void initDd(){
     Ebean.execute(Ebean.createCallableSq(dropDd1));
     Ebean.execute(Ebean.createCallableSq(createDd1));
-
     //Encacheキャッシュクリア
     CacheManager manager = CacheManager.create();
     Cache cache = manager.getCache("play");
@@ -51,5 +50,5 @@ public class FakeApp{
   public static void stopApp(){
     stop(app);
   }
-  
+
 }

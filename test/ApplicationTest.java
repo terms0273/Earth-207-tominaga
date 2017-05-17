@@ -20,22 +20,20 @@ import static org.fest.assertions.Assertions.*;
 
 public class ApplicationTest {
 
-    @Test
-    public void testLoginpage(){
-      Map<String, String> user  = new HashMap<String, String>();
-      user.put("r-tominaga", "207");
-      user.put("ttc", "000");
-      
-
-    }
+    /*フォームの情報。これをDBに保存する。
+    public static class User{
+      public String userid;
+      public String username;
+      public String password;
+    }*/
 
     @Test
     public void testRenderLoginpage() {
         Content html = views.html.loginpage.render();
         assertThat(contentType(html)).isEqualTo("text/html");
-        assertThat(contentAsString(html)).contains("ログイン画面");
-        assertThat(contentAsString(html)).contains("ログイン");
-        assertThat(contentAsString(html)).contains("新規登録");
+        assertThat(contentAsString(html)).contains("Login Page");
+        assertThat(contentAsString(html)).contains("Login");
+        assertThat(contentAsString(html)).contains("Signup");
     }
 
     public void testRenderSignup(){
