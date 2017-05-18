@@ -1,0 +1,22 @@
+@(title: String, logform: Form[Application.SampleForm])
+@import helper._
+
+@main("Login"){
+  <header id="header">
+    <h1 class ="uk-heading-primary uk-text-muted">@title</h1>
+  </header>
+  <body>
+    @helper.form(action = routes.Application.doLogin){
+      @(helper.inputText(
+        logform("USER ID")
+      ))
+      @(helper.inputText(
+        logform("PASSWORD")
+      ))
+      <input type="submit" value="ログイン">
+    }
+
+    <input type="button" value="新規作成" onClick="location.href='@routes.Application.goSignup'">
+
+  </body>
+}
