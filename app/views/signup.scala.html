@@ -7,13 +7,22 @@
     <p>USER ID・USER NAME・PASSWORDを設定してください</p>
     @helper.form(action = routes.Application.doSignup){
       @(helper.inputText(
-        sform("USER ID")
+        field = sform("userid"),
+        '_label -> "USER ID",
+        '_help -> "USER IDを入力してください",
+        'size -> 30
       ))
       @(helper.inputText(
-        sform("USER NAME")
+        field = sform("username"),
+        '_label -> "USER NAME",
+        '_help -> "USER NAMEを入力してください",
+        'size -> 30
         ))
-      @(helper.inputText(
-        sform("PASSWORD")
+      @(helper.inputPassword(
+        field = sform("password"),
+        '_label -> "PASSWORD",
+        '_help -> "PASSWORDを入力してください",
+        'size -> 30
         ))
       <input type="submit" value="新規作成" onClick="location.href='@routes.Application.doSignup'">
     }

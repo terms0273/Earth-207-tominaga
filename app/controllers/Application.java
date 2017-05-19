@@ -15,6 +15,7 @@ public class Application extends Controller {
   //Form用内部クラス
   public static class SampleForm{
     public String loginForm;
+    public String input;
   }
   //ログイン画面に飛ばす
   public static Result index(){
@@ -36,7 +37,7 @@ public class Application extends Controller {
 
   //ログイン画面で新規作成ボタンを押したときのページ移行
   public static Result goSignup(){
-    return ok(signup.render("新規作成画面"));
+    return ok(signup.render("新規作成画面", new Form(SampleForm.class)));
   }
 
   //新規作成画面で新規作成ボタンを押したときのアクション
@@ -45,12 +46,16 @@ public class Application extends Controller {
         if(!form.hasErrors()){
             User requestuser = form.get();
             requestuser.save();
-            return redirect(routes.Application.users());
+            return redirect(routes.Application.goUsers());
         }else{
             JFrame frame = new JFrame();
             JOptionPane.showMessageDialog(frame, "入力エラー");
             return redirect(routes.Application.goSignup());
         }
+  }
+
+  public static Result goUsers(){
+    return ok(users.render("基本情報落ちた、日本死ね"));
   }
 
 }

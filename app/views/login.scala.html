@@ -8,10 +8,14 @@
   <body>
     @helper.form(action = routes.Application.doLogin){
       @(helper.inputText(
-        logform("USER ID")
+        logform("USER ID"),
+        '_help -> "USER NAMEを入力してください",
+        'size -> 30
       ))
-      @(helper.inputText(
-        logform("PASSWORD")
+      @(helper.inputPassword(
+        logform("PASSWORD"),
+        '_help -> "USER NAMEを入力してください",
+        'size -> 30
       ))
       <input type="submit" value="ログイン">
     }
