@@ -8,21 +8,15 @@
     @helper.form(action = routes.Application.doSignup){
       @(helper.inputText(
         field = sform("userid"),
-        '_label -> "USER ID",
-        '_help -> "USER IDを入力してください",
-        'size -> 30
+        '_label -> "USER ID"
       ))
       @(helper.inputText(
         field = sform("username"),
-        '_label -> "USER NAME",
-        '_help -> "USER NAMEを入力してください",
-        'size -> 30
+        '_label -> "USER NAME"
         ))
-      @(helper.inputPassword(
+      @(helper.inputText(
         field = sform("password"),
-        '_label -> "PASSWORD",
-        '_help -> "PASSWORDを入力してください",
-        'size -> 30
+        '_label -> "PASSWORD"
         ))
       <input type="submit" value="新規作成" onClick="location.href='@routes.Application.doSignup'">
     }

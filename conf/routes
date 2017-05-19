@@ -12,3 +12,4 @@ GET     /doLogin                     controllers.Application.doLogin()
 GET     /goSignup                   controllers.Application.goSignup()
 POST    /doSignup                   controllers.Application.doSignup()
 GET    /goUsers                    controllers.Application.goUsers()
+GET     /logout                     controllers.Application.logout
