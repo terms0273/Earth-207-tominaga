@@ -1,14 +1,14 @@
 package controllers;
 
 
-import java.util.List;
+
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import models.User;
 import play.mvc.*;
 import play.data.*;
 import views.html.*;
-import utils.BCrypt;
+import org.mindrot.jbcrypt.BCrypt;
 
 
 public class Application extends Controller {
@@ -50,6 +50,8 @@ public class Application extends Controller {
       data = User.find.where().eq("userid", input).findUnique(); //このdataにユーザーの登録情報が入っている。
 
       if(data != null && BCrypt.checkpw(input2, data.password)){
+        setSession(data);
+        System.out.print(session("userid"));
         return redirect(routes.Application.goUsers());
       }else{
         errFlg = true;
@@ -92,17 +94,18 @@ public class Application extends Controller {
     return ok(users.render("基本情報落ちた、日本死ね"));
   }
 
-  public Result logout() {
+  public static Result logout(){
         clearSession();
+        System.out.println(session("userid"));
         return redirect(routes.Application.index());
     }
 
-    private void setSession(User user) {
-        session("fullName",user.fullName);
-        session("id",user.id.toString());
+    private static void setSession(User user) {
+        session("username",user.username);
+        session("userid",user.userid);
     }
 
-    private void clearSession() {
+    private static void clearSession() {
         session().clear();
     }
 

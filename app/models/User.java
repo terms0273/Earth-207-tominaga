@@ -26,6 +26,8 @@ public class User extends Model{
 
     public String password;
 
+    public boolean admin; //ユーザータイプ
+
     public boolean dltflg;
 
     public static Finder<Long, User> find = new Finder<Long, User>(Long.class, User.class);

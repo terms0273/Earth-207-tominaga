@@ -8,6 +8,7 @@ create table user (
   userid                    varchar(255),
   username                  varchar(255),
   password                  varchar(255),
+  admin                     tinyint(1) default 0,
   dltflg                    tinyint(1) default 0,
   constraint pk_user primary key (id))
 ;

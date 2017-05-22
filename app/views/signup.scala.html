@@ -14,10 +14,14 @@
         field = sform("username"),
         '_label -> "USER NAME"
         ))
-      @(helper.inputText(
+      @(helper.inputPassword(
         field = sform("password"),
         '_label -> "PASSWORD"
         ))
+      @(helper.inputRadioGroup(
+        field = sform("admin"),
+        options = Seq("true" -> "administrator", "false" -> "general")
+      ))
       <input type="submit" value="新規作成" onClick="location.href='@routes.Application.doSignup'">
     }
 
