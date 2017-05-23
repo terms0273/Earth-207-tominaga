@@ -6,9 +6,6 @@ import org.hibernate.validator.constraints.NotBlank;
 import play.db.ebean.Model;
 import play.db.ebean.Model.Finder;
 
-
-
-
 /**
  *
  * @author r-tominaga

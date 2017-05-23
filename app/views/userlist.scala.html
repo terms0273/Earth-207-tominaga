@@ -1,0 +1,28 @@
+@(title: String, users: List[models.User], id:Long)
+@import helper._
+
+@main("User List"){
+  <header id="header">
+    <h1 class ="uk-heading-primary uk-text-muted">@title</h1>
+  </header>
+  <div id="contents">
+    <table class="uk-table uk-table-hover">
+        <thead>
+            <th>USER ID</th>
+            <th>USER NAME</th>
+            <th></th>
+        </thead>
+        <tbody>
+             @for(user <- users){
+                <tr>
+                    <td>@user.userid</td>
+                    <td>@user.username</td>
+                    <td>
+                        <button class="uk-button uk-button-default uk-button-small" onclick="location.href='@routes.Application.delete(user.id)'">DELETE</button>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+  <input type="button" value="戻る" onClick="location.href='@routes.Application.goUsers(id)'">
+}

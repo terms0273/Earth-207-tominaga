@@ -1,0 +1,29 @@
+@(title: String, pwdform: Form[Application.SampleForm], id:Long)
+@import helper._
+
+@main("パスワード変更"){
+  <header id="header">
+    <h1 class ="uk-heading-primary uk-text-muted">@title</h1>
+  </header>
+  <body>
+
+    @helper.form(action = routes.Application.changePwd(id)){
+      @(helper.inputPassword(
+        pwdform("oldpwd"),
+        '_label -> "OLD PASSWORD"
+      ))
+      @(helper.inputPassword(
+        pwdform("newpwd"),
+        '_label -> "NEW PASSWORD"
+      ))
+      @(helper.inputPassword(
+        pwdform("newpwd2"),
+        '_label -> "CONFIRM NEW PASSWORD"
+      ))
+      <input type="submit" value="変更" >
+    }
+
+    <input type="button" value="戻る" onClick="location.href='@routes.Application.goUsers(id)'">
+
+  </body>
+}
