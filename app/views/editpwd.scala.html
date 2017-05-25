@@ -7,7 +7,7 @@
   </header>
   <body>
 
-    @helper.form(action = routes.Application.changePwd(id)){
+    @helper.form(action = CSRF(routes.Application.changePwd(id))){
       @(helper.inputPassword(
         pwdform("oldpwd"),
         '_label -> "OLD PASSWORD"

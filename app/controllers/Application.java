@@ -131,19 +131,16 @@ public class Application extends Controller {
     private static void setSession(User user) {
         session("username",user.username);
         session("userid",user.userid);
-        session("id", String.valueOf(user.id));
         session("admin", String.valueOf(user.admin));
     }
 
-    private static void clearSession() {
-        session().clear();
-    }
     @play.mvc.Security.Authenticated(models.Secured.class)
     public static Result edit(Long id){
       User requestuser = User.find.byId(id);
       Form<User> eForm = new Form(User.class).fill(requestuser);
       return ok(edit.render("ユーザー編集画面", eForm, id));
     }
+
     @play.mvc.Security.Authenticated(models.Secured.class)
     public static Result update(Long id){
       Form<EditUser> eForm = new Form(EditUser.class).bindFromRequest();
@@ -190,6 +187,7 @@ public class Application extends Controller {
   public static Result editpwd(Long id){
     return ok(editpwd.render("パスワード変更", new Form(SampleForm.class), id));
   }
+
   @play.mvc.Security.Authenticated(models.Secured.class)
   public static Result changePwd(Long id){
     User user = User.find.byId(id);

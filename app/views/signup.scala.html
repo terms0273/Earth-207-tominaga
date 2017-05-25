@@ -23,7 +23,10 @@
         field = sform("admin"),
         options = Seq("true" -> "administrator", "false" -> "general")
       ))
-      <input type="submit" value="新規作成" >
+      <input type="submit" value="新規作成" class="uk-button uk-button-primary uk-margin-small-left uk-margin-top">
+      <input type="button" value="戻る" class="uk-button uk-button-primary uk-margin-small-left uk-margin-top"
+      onClick="location.href='@routes.Application.index()'">
+
     }
 
   </body>
