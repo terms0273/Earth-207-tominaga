@@ -1,8 +1,12 @@
 package models;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 import models.User;
 import org.junit.*;
-
+import apps.FakeApp;
 import static org.fest.assertions.Assertions.assertThat;
 import static play.test.Helpers.*;
 
@@ -10,13 +14,13 @@ public class UserTest extends FakeApp {
     //保存した内容が正しいか
     @Test
     public void saveDataTest() {
-        String userId = "207";
-        User user = new User(userId , "r-tominaga", "password");
+        String userid = "207";
+        User user = new User();
         user.save();
 
-        User actual = User.findData(userId);
+        User actual = User.find.where().eq("userid", userid).findUnique();
 
-        assertThat(actual.userId).isEqualTo(userId);
+        assertThat(actual.userid).isEqualTo(userid);
     }
 
     @Test
@@ -81,11 +85,10 @@ public class UserTest extends FakeApp {
      */
     @Test
     public void userDbCheckTest(){
-
         String sql = "select id,username,password from User where id=:id";
         List<SqlRow> sqlRows = Ebean.createSqlQuery(sql).setParameter("id","205").findList();
         assertThat(sqlRows.get(0).getString("password")).isEqualTo(user.password);
-        assertThat(sqlRows.get(0).getString("username")).isEqualTo(user.nickname);
+        assertThat(sqlRows.get(0).getString("username")).isEqualTo(user.username);
     }
     /**
      * dbに入れた値がModelにも入っているかチェックする
@@ -94,7 +97,7 @@ public class UserTest extends FakeApp {
     public void testUserCheck(){
         User getUser = User.find.byId("207");
         assertThat(getUser.password).isEqualTo(user.password);
-        assertThat(getUser.nickname).isEqualTo(user.nickname);
+        assertThat(getUser.username).isEqualTo(user.username);
     }
 
 }

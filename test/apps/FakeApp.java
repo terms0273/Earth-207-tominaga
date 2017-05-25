@@ -1,8 +1,7 @@
 package apps;
 
 import com.avaje.ebean.Ebean;
-import net.sf.encache.Cache;
-import net.sf.encache.CacheManager;
+import net.sf.ehcache.*;
 import org.apache.commons.io.FileUtils;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -18,12 +17,12 @@ public class FakeApp{
 
   @BeforeClass
   public static void startApp() throws IOException{
-    app = FakeApplication(inMemoryDatabase());
+    app = fakeApplication(inMemoryDatabase());
     start(app);
     String evolutionContent = FileUtils.readFileToString(app.getWrappedApplication()
   .getFile("conf/evolutions/default/1.sql"));
     String[] splitEvolutionContent = evolutionContent.split("#---!Ups");
-    String[] upDowns = splitEvolutionContent[1].split("#---!Downs");
+    String[] upsDowns = splitEvolutionContent[1].split("#---!Downs");
     createDd1 = upsDowns[0];
     dropDd1 = upsDowns[1];
   }
@@ -34,8 +33,8 @@ public class FakeApp{
   }
 
   public static void initDd(){
-    Ebean.execute(Ebean.createCallableSq(dropDd1));
-    Ebean.execute(Ebean.createCallableSq(createDd1));
+    Ebean.execute(Ebean.createCallableSql(dropDd1));
+    Ebean.execute(Ebean.createCallableSql(createDd1));
     //Encacheキャッシュクリア
     CacheManager manager = CacheManager.create();
     Cache cache = manager.getCache("play");

@@ -8,28 +8,26 @@ import org.junit.*;
 
 import play.mvc.*;
 import play.test.*;
+import play.data.Form;
+import static play.data.Form.form;
 import play.data.DynamicForm;
 import play.data.validation.ValidationError;
 import play.data.validation.Constraints.RequiredValidator;
 import play.i18n.Lang;
 import play.libs.F;
 import play.libs.F.*;
+import controllers.Application.*;
 
 import static play.test.Helpers.*;
 import static org.fest.assertions.Assertions.*;
 
 public class ApplicationTest {
 
-    /*フォームの情報。これをDBに保存する。
-    public static class User{
-      public String userid;
-      public String username;
-      public String password;
-    }*/
+
 
     @Test
     public void testRenderLoginpage() {
-        Content html = views.html.loginpage.render();
+        Content html = views.html.login.render("Login", new Form(SampleForm.class));
         assertThat(contentType(html)).isEqualTo("text/html");
         assertThat(contentAsString(html)).contains("Login Page");
         assertThat(contentAsString(html)).contains("Login");
@@ -37,7 +35,7 @@ public class ApplicationTest {
     }
 
     public void testRenderSignup(){
-      Content html = views.html.signup.render();
+      Content html = views.html.signup.render("Signup", new Form(SampleForm.class));
       assertThat(contentType(html)).isEqualTo("text/html");
       assertThat(contentAsString(html)).contains("USER ID");
       assertThat(contentAsString(html)).contains("USER NAME");

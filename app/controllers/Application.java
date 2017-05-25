@@ -8,9 +8,9 @@ import models.Login;
 import play.mvc.*;
 import play.data.*;
 import play.data.Form;
+import static play.data.Form.form;
 import play.filters.csrf.AddCSRFToken;
 import play.filters.csrf.RequireCSRFCheck;
-import static play.data.Form.form;
 import views.html.*;
 import org.mindrot.jbcrypt.BCrypt;
 import static scala.sys.process.BasicIO.input;
@@ -90,7 +90,7 @@ public class Application extends Controller {
     }
     //フォームにエラーがあろうとなかろうと共通
     if(errFlg == true){
-      return badRequest(login.render("ログイン失敗", new Form(SampleForm.class)));
+      return badRequest(login.render("IDかPassword、もしくはその両方が間違っています", new Form(SampleForm.class)));
     }else{
       ;
     }

@@ -4,15 +4,29 @@ import org.junit.Test;
 import org.junit.Before;
 
 import models.User;
-import views.html.user.*;
-import helper.UserHelper;
+import views.html.*;
 
 import static org.fest.assertions.Assertions.*;
 import static play.test.Helpers.*;
 import static play.data.Form.form;
+import com.fasterxml.jackson.databind.JsonNode;
+import org.junit.*;
 
-public class UserViewTest {
-    @Before public void setUp() {
+import play.mvc.*;
+import play.test.*;
+import play.data.DynamicForm;
+import play.data.validation.ValidationError;
+import play.data.validation.Constraints.RequiredValidator;
+import play.i18n.Lang;
+import play.libs.F;
+import play.libs.F.*;
+
+import static play.test.Helpers.*;
+import static org.fest.assertions.Assertions.*;
+
+public class ViewTest {
+    @Before
+    public void setUp() {
         start(fakeApplication(inMemoryDatabase()));
     }
 

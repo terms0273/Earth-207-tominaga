@@ -1,11 +1,34 @@
 import org.junit.*;
 
-import static org.fest.assertions.api.Assertions.*;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import static org.fest.assertions.Assertions.*;
 import static play.test.Helpers.*;
+import com.avaje.ebean.Ebean;
+import play.db.ebean.Model;
+import play.db.ebean.Model.Finder;
+import play.data.Form;
+import static play.data.Form.form;
 
 import play.mvc.*;
 import models.User;
-import static controllers.routes.ref.UserController.*;
+import com.fasterxml.jackson.databind.JsonNode;
+import org.junit.*;
+import apps.FakeApp;
+
+import play.mvc.*;
+import play.test.*;
+import play.data.DynamicForm;
+import play.data.validation.ValidationError;
+import play.data.validation.Constraints.RequiredValidator;
+import play.i18n.Lang;
+import play.libs.F;
+import play.libs.F.*;
+
+import static play.test.Helpers.*;
+import static org.fest.assertions.Assertions.*;
 
 public class ControllersTest extends FakeApp{
   @Before
@@ -24,15 +47,14 @@ public class ControllersTest extends FakeApp{
   //
   @Test
   public void callPostTest() {
-    Result result = route(fakeRequest(POST, "/users/post"));
+    Result result = route(fakeRequest(POST, "/goUsers/post"));
 
     assertThat(status(result)).isEqualTo(SEE_OTHER);
-    assertThat(redirectLocation(result)).isEqualTo("/users");
+    assertThat(redirectLocation(result)).isEqualTo("/goUsers");
   }
   /**
-    *
+    *フォームに入力した値が正しい時にusersに移行しているか
     **/
-    //フォームに入力した値が正しい時に/usersページに移行しているか
   @Test
   public void loginSuccessTest() {
     Map<String, String> params = new HashMap<String,String>();
@@ -40,19 +62,20 @@ public class ControllersTest extends FakeApp{
     params.put("password", "password");
 
     Result result = route(
-            fakeRequest(POST, "/users")
+            fakeRequest(POST, "/goUsers")
             .withFormUrlEncodedBody(params)
             );
 
     assertThat(status(result)).isEqualTo(SEE_OTHER);
-    assertThat(redirectLocation(result)).isEqualTo("/users");
+    assertThat(redirectLocation(result)).isEqualTo("/goUsers");
     assertThat(session(result)).isNotNull();
   }
-  //フォームに入力した値が誤っているときログイン画面に戻りセッションの値がクリアされているか。
-  //エラー表示は出ているか
+  /**
+  *フォームに入力した値が誤っているときログイン画面に戻りセッションの値がクリアされているか。
+  *エラー表示は出ているか
+  **/
   @Test
     public void loginErrorTest() {
-
         Map<String,String> params = new HashMap<>();
         params.put("userid","4971");
         params.put("password","incorrect");
@@ -64,7 +87,7 @@ public class ControllersTest extends FakeApp{
         assertThat(getUser.password).isEmpty();
 
         assertThat(status(result)).isEqualTo(BAD_REQUEST);
-        assertThat(contentAsString(result)).isEqualTo("/users");
+        assertThat(contentAsString(result)).isEqualTo("/goUsers");
         assertThat(contentAsString(result)).contains("IDかPassword、もしくはその両方が間違っています");
         assertThat(session(result)).isNull();
         assertThat(form).isNull();
