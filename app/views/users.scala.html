@@ -4,10 +4,11 @@
     <h1 class ="uk-heading-primary uk-text-muted">@title</h1>
   </header>
   <body>
-    <p>ようこそEarthへ</p>
-    <input type="button" value="ログアウト" onClick="location.href='@routes.Application.logout'">
-    <input type="button" value="ユーザー編集" onClick="location.href='@routes.Application.edit(id)'">
-    <input type="button" value="ユーザー削除" onClick="location.href='@routes.Application.userlist(id)'">
-    <input type="button" value="パスワード変更" onClick="location.href='@routes.Application.editpwd(id)'">
+    <div>
+    <input type="button" value="ログアウト" class="uk-button uk-button-primary uk-margin-small-left uk-margin-top" onClick="location.href='@routes.Application.logout'">
+    <input type="button" value="ユーザー編集" class="uk-button uk-button-primary uk-margin-small-left uk-margin-top" onClick="location.href='@routes.Application.edit(id)'">
+    <input type="button" value="ユーザー削除" class="uk-button uk-button-primary uk-margin-small-left uk-margin-top" onClick="location.href='@routes.Application.userlist(id)'">
+    <input type="button" value="パスワード変更" class="uk-button uk-button-primary uk-margin-small-left uk-margin-top" onClick="location.href='@routes.Application.editpwd(id)'">
+  </div>
   </body>
 }

@@ -3,6 +3,13 @@
 
 # --- !Ups
 
+create table admins (
+  id                        bigint auto_increment not null,
+  username                  varchar(255),
+  password                  varchar(255),
+  constraint pk_admins primary key (id))
+;
+
 create table user (
   id                        bigint auto_increment not null,
   userid                    varchar(255),
@@ -19,6 +26,8 @@ create table user (
 # --- !Downs
 
 SET FOREIGN_KEY_CHECKS=0;
+
+drop table admins;
 
 drop table user;
 

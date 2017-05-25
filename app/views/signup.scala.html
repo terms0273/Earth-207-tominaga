@@ -6,6 +6,7 @@
   <body>
     <p>USER ID・USER NAME・PASSWORDを設定してください</p>
     @helper.form(action = routes.Application.doSignup){
+      @helper.CSRF.formField
       @(helper.inputText(
         field = sform("userid"),
         '_label -> "USER ID"
@@ -22,7 +23,7 @@
         field = sform("admin"),
         options = Seq("true" -> "administrator", "false" -> "general")
       ))
-      <input type="submit" value="新規作成" onClick="location.href='@routes.Application.doSignup'">
+      <input type="submit" value="新規作成" >
     }
 
   </body>
