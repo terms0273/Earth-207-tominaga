@@ -35,11 +35,13 @@ public class ApplicationTest {
     }
 
     public void testRenderSignup(){
-      Content html = views.html.signup.render("Signup", new Form(SampleForm.class));
+      Content html = views.html.signup.render("Signup", new Form(SignupForm.class));
       assertThat(contentType(html)).isEqualTo("text/html");
       assertThat(contentAsString(html)).contains("USER ID");
       assertThat(contentAsString(html)).contains("USER NAME");
       assertThat(contentAsString(html)).contains("PASSWORD");
+      assertThat(contentAsString(html)).contains("CONFIRM PASSWORD");
+
 
     }
 

@@ -1,4 +1,4 @@
-@(title: String, sform: Form[models.User])
+@(title: String, sform: Form[Application.SignupForm])
 @main("top"){
   <header id="header">
     <h1 class ="uk-heading-primary uk-text-muted">@title</h1>
@@ -16,8 +16,12 @@
         '_label -> "USER NAME"
         ))
       @(helper.inputPassword(
-        field = sform("password"),
+        field = sform("userpwd"),
         '_label -> "PASSWORD"
+        ))
+      @(helper.inputPassword(
+        field = sform("userpwd2"),
+        '_label -> "CONFIRM PASSWORD"
         ))
       @(helper.inputRadioGroup(
         field = sform("admin"),

@@ -21,8 +21,8 @@ public class FakeApp{
     start(app);
     String evolutionContent = FileUtils.readFileToString(app.getWrappedApplication()
   .getFile("conf/evolutions/default/1.sql"));
-    String[] splitEvolutionContent = evolutionContent.split("#---!Ups");
-    String[] upsDowns = splitEvolutionContent[1].split("#---!Downs");
+    String[] splitEvolutionContent = evolutionContent.split("# --- !Ups");
+    String[] upsDowns = splitEvolutionContent[1].split("# --- !Downs");
     createDd1 = upsDowns[0];
     dropDd1 = upsDowns[1];
   }

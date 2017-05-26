@@ -1,4 +1,5 @@
 package views;
+import controllers.*;
 
 import org.junit.Test;
 import org.junit.Before;
@@ -14,6 +15,7 @@ import org.junit.*;
 
 import play.mvc.*;
 import play.test.*;
+import play.data.*;
 import play.data.DynamicForm;
 import play.data.validation.ValidationError;
 import play.data.validation.Constraints.RequiredValidator;
@@ -25,22 +27,17 @@ import static play.test.Helpers.*;
 import static org.fest.assertions.Assertions.*;
 
 public class ViewTest {
-    @Before
-    public void setUp() {
-        start(fakeApplication(inMemoryDatabase()));
-    }
 
     @Test
     public void testRenderLoginpage() {
-        Content html = views.html.loginpage.render();
+        Content html = views.html.login.render("ログイン", new Form(Application.SampleForm.class));
         assertThat(contentType(html)).isEqualTo("text/html");
-        assertThat(contentAsString(html)).contains("Login Page");
         assertThat(contentAsString(html)).contains("Login");
         assertThat(contentAsString(html)).contains("Signup");
     }
 
     public void testRenderSignup(){
-      Content html = views.html.signup.render();
+      Content html = views.html.signup.render("新規作成画面", new Form(Application.SampleForm.class));
       assertThat(contentType(html)).isEqualTo("text/html");
       assertThat(contentAsString(html)).contains("USER ID");
       assertThat(contentAsString(html)).contains("USER NAME");

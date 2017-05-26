@@ -55,6 +55,7 @@ public class Application extends Controller {
     public String username;
     public String userpwd;
     public String userpwd2;
+    public boolean admin;
   }
 
   public static class EditUser{
@@ -99,24 +100,39 @@ public class Application extends Controller {
 
   //ログイン画面で新規作成ボタンを押したときのページ移行
   public static Result goSignup(){
-    return ok(signup.render("新規作成画面", new Form(SampleForm.class)));
+    return ok(signup.render("新規作成画面", new Form(SignupForm.class)));
   }
 
   //新規作成画面で新規作成ボタンを押したときのアクション
   @AddCSRFToken
   public static Result doSignup(){
-    Form<User> form = new Form(User.class).bindFromRequest();
-        if(!form.hasErrors()){
-            User requestuser = form.get();
-            requestuser.password = BCrypt.hashpw(requestuser.password, BCrypt.gensalt(13));
-            requestuser.save();
-            setSession(requestuser);
-            return redirect(routes.Application.goUsers(requestuser.id));
+    Form<SignupForm> form = new Form(SignupForm.class).bindFromRequest();
+        if(!form.hasErrors() ){
+          String input1 = form.get().userid;
+          String input2 = form.get().username;
+          String input3 = form.get().userpwd;
+          String input4 = form.get().userpwd;
+          boolean input5 = form.get().admin;
+            if(input3.equals(input4)){
+              User requestuser = new User();
+              requestuser.username = input2;
+              requestuser.userid = input1;
+              requestuser.admin = input5;
+              requestuser.password = BCrypt.hashpw(input1, BCrypt.gensalt(13));
+              requestuser.save();
+              setSession(requestuser);
+              return redirect(routes.Application.goUsers(requestuser.id));
+            }else{
+                //新しく入力したパスが同一でないことを警告
+                JFrame frame = new JFrame();
+                JOptionPane.showMessageDialog(frame, "パスワードが同一でありません。");
+            }
         }else{
             JFrame frame = new JFrame();
             JOptionPane.showMessageDialog(frame, "入力エラー");
             return redirect(routes.Application.goSignup());
         }
+        return redirect(routes.Application.goSignup());
   }
   @play.mvc.Security.Authenticated(models.Secured.class)
   public static Result goUsers(Long id){
@@ -132,6 +148,7 @@ public class Application extends Controller {
         session("username",user.username);
         session("userid",user.userid);
         session("admin", String.valueOf(user.admin));
+        session("id", String.valueOf(user.id));
     }
 
     @play.mvc.Security.Authenticated(models.Secured.class)

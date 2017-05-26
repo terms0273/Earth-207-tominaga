@@ -10,7 +10,9 @@ import com.avaje.ebean.Ebean;
 import play.db.ebean.Model;
 import play.db.ebean.Model.Finder;
 import play.data.Form;
+import play.data.*;
 import static play.data.Form.form;
+import controllers.*;
 
 import play.mvc.*;
 import models.User;
@@ -35,16 +37,16 @@ public class ControllersTest extends FakeApp{
   public void setUpTest() {
     start(fakeApplication(inMemoryDatabase()));
   }
-
+  /*
   @Test
   public void callIndex() {
-    Result result = callAction(UserController.index());
+    Result result = route(fakeRequest(GET, "/index/get"));
     assertThat(status(result)).isEqualTo(OK);
     assertThat(contentType(result)).isEqualTo("text/html");
     assertThat(charset(result)).isEqualTo("utf-8");
   }
 
-  //
+
   @Test
   public void callPostTest() {
     Result result = route(fakeRequest(POST, "/goUsers/post"));
@@ -52,17 +54,35 @@ public class ControllersTest extends FakeApp{
     assertThat(status(result)).isEqualTo(SEE_OTHER);
     assertThat(redirectLocation(result)).isEqualTo("/goUsers");
   }
+  */
   /**
     *フォームに入力した値が正しい時にusersに移行しているか
     **/
+
+  @Test
+  public void signupTest(){
+    Map<String, String> params = new HashMap<String,String>();
+    params.put("userid", "207");
+    params.put("username", "r-tominaga");
+    params.put("password", "12345");
+    params.put("password2", "12345");
+
+    Result result = route(
+            fakeRequest(POST, "/doSignup")
+            .withFormUrlEncodedBody(params)
+            );
+  }
+
+
+
   @Test
   public void loginSuccessTest() {
     Map<String, String> params = new HashMap<String,String>();
     params.put("userid", "207");
-    params.put("password", "password");
+    params.put("password", "12345");
 
     Result result = route(
-            fakeRequest(POST, "/goUsers")
+            fakeRequest(POST, "/doLogin")
             .withFormUrlEncodedBody(params)
             );
 
@@ -80,10 +100,10 @@ public class ControllersTest extends FakeApp{
         params.put("userid","4971");
         params.put("password","incorrect");
 
-        Result result = route(fakeRequest(POST,"/users").withFormUrlEncodedBody(params));
-        Form form = new Form(User.class).bindFromRequest();
+        Result result = route(fakeRequest(POST,"/doLogin").withFormUrlEncodedBody(params));
+        Form<User> form = new Form(User.class).bindFromRequest();
         User getUser = form.get();
-        assertThat(getUser.id).isEmpty();
+        assertThat(getUser.userid).isEmpty();
         assertThat(getUser.password).isEmpty();
 
         assertThat(status(result)).isEqualTo(BAD_REQUEST);
