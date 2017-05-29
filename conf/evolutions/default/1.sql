@@ -4,40 +4,32 @@
 # --- !Ups
 
 create table admins (
-  id                        bigint not null,
+  id                        bigint auto_increment not null,
   username                  varchar(255),
   password                  varchar(255),
   constraint pk_admins primary key (id))
 ;
 
 create table user (
-  id                        bigint not null,
+  id                        bigint auto_increment not null,
   userid                    varchar(255),
   username                  varchar(255),
   password                  varchar(255),
-  admin                     boolean,
-  dltflg                    boolean,
+  admin                     tinyint(1) default 0,
+  dltflg                    tinyint(1) default 0,
   constraint pk_user primary key (id))
 ;
-
-create sequence admins_seq;
-
-create sequence user_seq;
 
 
 
 
 # --- !Downs
 
-SET REFERENTIAL_INTEGRITY FALSE;
+SET FOREIGN_KEY_CHECKS=0;
 
-drop table if exists admins;
+drop table admins;
 
-drop table if exists user;
+drop table user;
 
-SET REFERENTIAL_INTEGRITY TRUE;
-
-drop sequence if exists admins_seq;
-
-drop sequence if exists user_seq;
+SET FOREIGN_KEY_CHECKS=1;
 

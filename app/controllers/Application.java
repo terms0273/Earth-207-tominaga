@@ -225,8 +225,8 @@ public class Application extends Controller {
           }
         }else{
         //フォームの入力エラー
-        JFrame frame = new JFrame();
-        JOptionPane.showMessageDialog(frame, "入力エラー");
+        JFrame frame2 = new JFrame();
+        JOptionPane.showMessageDialog(frame2, "入力エラー");
         }
         return redirect(routes.Application.goUsers(id));
     }

@@ -9,7 +9,7 @@ POST    /authenticate               controllers.Application.authenticate()
 # Map static resources from the /public folder to the /assets URL path
 GET     /assets/*file               controllers.Assets.at(path="/public", file)
 
-GET     /doLogin                    controllers.Application.doLogin()
+POST    /doLogin                    controllers.Application.doLogin()
 GET     /goSignup                   controllers.Application.goSignup()
 POST    /doSignup                   controllers.Application.doSignup()
 GET     /goUsers/:id                controllers.Application.goUsers(id:Long)
