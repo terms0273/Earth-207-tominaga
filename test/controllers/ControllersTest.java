@@ -74,9 +74,17 @@ public class ControllersTest extends FakeApp{
   }
 
 
-
+  //まずDBにユーザー作成をしてやる
   @Test
   public void loginSuccessTest() {
+    User user = new User();
+    user.userid = "207";
+    user.username = "r-tominaga";
+    user.password = "12345";
+    user.admin = true;
+    user.dltflg = false;
+    user.save();
+
     Map<String, String> params = new HashMap<String,String>();
     params.put("userid", "207");
     params.put("password", "12345");
@@ -107,7 +115,7 @@ public class ControllersTest extends FakeApp{
         assertThat(getUser.password).isEmpty();
 
         assertThat(status(result)).isEqualTo(BAD_REQUEST);
-        assertThat(contentAsString(result)).isEqualTo("/goUsers");
+        assertThat(contentAsString(result)).isEqualTo("/index");
         assertThat(contentAsString(result)).contains("IDかPassword、もしくはその両方が間違っています");
         assertThat(session(result)).isNull();
         assertThat(form).isNull();

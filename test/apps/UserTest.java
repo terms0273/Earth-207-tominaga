@@ -12,8 +12,17 @@ import static play.test.Helpers.*;
 import static play.data.Form.form;
 import play.data.*;
 import play.data.Form;
+import com.avaje.ebean.Ebean;
 
 public class UserTest extends FakeApp {
+    @Test
+    public void createDbTest() throws Exception{
+      String sql = "INSERT INTO USER VALUES ('1', '207', 'r-tominaga', '12345', true, false);";
+      int row = Ebean.createSqlUpdate(sql).execute();
+      assertThat(row).isEqualTo(1);
+
+    }
+
     //保存した内容が正しいか
     @Test
     public void saveDataTest() {
@@ -21,11 +30,11 @@ public class UserTest extends FakeApp {
         String username = "r-tominaga";
 
         User user = new User();
+        user.userid = userid;
+        user.username = username;
         user.password = "12345";
         user.admin = true;
         user.dltflg = false;
-        user.userid = userid;
-        user.username = username;
 
         user.save();
 

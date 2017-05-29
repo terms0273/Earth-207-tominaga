@@ -30,14 +30,14 @@ public class ViewTest {
 
     @Test
     public void testRenderLoginpage() {
-        Content html = views.html.login.render("ログイン", new Form(Application.SampleForm.class));
+        Content html = views.html.login.render("Login", new Form(Application.SampleForm.class));
         assertThat(contentType(html)).isEqualTo("text/html");
         assertThat(contentAsString(html)).contains("Login");
         assertThat(contentAsString(html)).contains("Signup");
     }
 
     public void testRenderSignup(){
-      Content html = views.html.signup.render("新規作成画面", new Form(Application.SampleForm.class));
+      Content html = views.html.signup.render("新規作成画面", new Form(Application.SignupForm.class));
       assertThat(contentType(html)).isEqualTo("text/html");
       assertThat(contentAsString(html)).contains("USER ID");
       assertThat(contentAsString(html)).contains("USER NAME");
