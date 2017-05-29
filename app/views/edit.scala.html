@@ -6,7 +6,7 @@
   </header>
   <body>
     <p>新しいUSER NAMEを設定してください</p>
-    @form(action = CSRF(routes.Application.update(id))){
+    @form(action = routes.Application.update(id)){
       @(inputText(
         field = editForm("userid"),
         '_label -> "USER ID"

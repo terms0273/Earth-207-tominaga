@@ -12,7 +12,6 @@
 
     <div class="uk-position-center uk-overlay uk-overlay-default">
       @helper.form(action = routes.Application.doLogin){
-        @helper.CSRF.formField
         @(helper.inputText(
           logform("userid"),
           '_label -> "USER ID",
@@ -29,7 +28,7 @@
       </div>
     </div>
 
-</div>
+    </div>
 
   </body>
 }

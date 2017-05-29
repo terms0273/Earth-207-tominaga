@@ -29,7 +29,7 @@ public class ApplicationTest {
     public void testRenderLoginpage() {
         Content html = views.html.login.render("Login", new Form(SampleForm.class));
         assertThat(contentType(html)).isEqualTo("text/html");
-        assertThat(contentAsString(html)).contains("Login Page");
+        assertThat(contentAsString(html)).contains("Login");
         assertThat(contentAsString(html)).contains("Login");
         assertThat(contentAsString(html)).contains("Signup");
     }

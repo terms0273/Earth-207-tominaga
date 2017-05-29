@@ -42,6 +42,9 @@ public class ViewTest {
       assertThat(contentAsString(html)).contains("USER ID");
       assertThat(contentAsString(html)).contains("USER NAME");
       assertThat(contentAsString(html)).contains("PASSWORD");
+      assertThat(contentAsString(html)).contains("CONFIRM PASSWORD");
+      assertThat(contentAsString(html)).contains("administarator");
+      assertThat(contentAsString(html)).contains("general");
 
     }
 

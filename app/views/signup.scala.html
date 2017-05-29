@@ -6,7 +6,6 @@
   <body>
     <p>USER ID・USER NAME・PASSWORDを設定してください</p>
     @helper.form(action = routes.Application.doSignup){
-      @helper.CSRF.formField
       @(helper.inputText(
         field = sform("userid"),
         '_label -> "USER ID"

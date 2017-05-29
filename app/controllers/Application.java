@@ -64,7 +64,6 @@ public class Application extends Controller {
   }
 
 
-  @AddCSRFToken
   public static Result doLogin(){
     //findメソッドでUSER ID(フォーム)からDBを検索。パスワードが一致していればメイン画面表示
     Form<SampleForm> f = new Form(SampleForm.class).bindFromRequest();
@@ -104,7 +103,6 @@ public class Application extends Controller {
   }
 
   //新規作成画面で新規作成ボタンを押したときのアクション
-  @AddCSRFToken
   public static Result doSignup(){
     Form<SignupForm> form = new Form(SignupForm.class).bindFromRequest();
         if(!form.hasErrors() ){
