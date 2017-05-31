@@ -5,11 +5,30 @@
     <h1 class ="uk-heading-primary uk-text-muted">@title</h1>
   </header>
   <body>
+
+    <div class="uk-child-width-1-3 uk-grid-small uk-grid-match" uk-grid>
     <div>
-    <input type="button" value="ログアウト" class="uk-button uk-button-primary uk-margin-small-left uk-margin-top" onClick="location.href='@routes.Application.logout'">
-    <input type="button" value="ユーザー編集" class="uk-button uk-button-primary uk-margin-small-left uk-margin-top" onClick="location.href='@routes.Application.edit(id)'">
-    <input type="button" value="ユーザー削除" class="uk-button uk-button-primary uk-margin-small-left uk-margin-top" onClick="location.href='@routes.Application.userlist(id)'">
-    <input type="button" value="パスワード変更" class="uk-button uk-button-primary uk-margin-small-left uk-margin-top" onClick="location.href='@routes.Application.editpwd(id)'">
+        <div class="uk-grid-small uk-grid uk-card uk-card-default uk-card-body uk-child-width-5-1">
+          <div>
+          <input type="button" value="ログアウト" class="uk-button uk-button-primary uk-margin-small-left uk-margin-top" onClick="location.href='@routes.Application.logout'">
+          <br>
+          <input type="button" value="ユーザー編集" class="uk-button uk-button-primary uk-margin-small-left uk-margin-top" onClick="location.href='@routes.Application.edit(id)'">
+          <br>
+          <input type="button" value="ユーザー削除" class="uk-button uk-button-primary uk-margin-small-left uk-margin-top" onClick="location.href='@routes.Application.userlist(id)'">
+          <br>
+          <input type="button" value="パスワード変更" class="uk-button uk-button-primary uk-margin-small-left uk-margin-top" onClick="location.href='@routes.Application.editpwd(id)'">
+        </div>
+        </div>
+    </div>
+    <div>
+        <div class="uk-card uk-card-primary uk-card-body uk-width-auto">
+            <h3 class="uk-card-title">QUAE SIT SAPIENTIA DISCE LEGENDO</h3>
+            <p></p>
+        </div>
+    </div>
   </div>
+
+
+
   </body>
 }

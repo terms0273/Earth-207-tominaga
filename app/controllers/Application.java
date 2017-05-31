@@ -15,6 +15,7 @@ import views.html.*;
 import org.mindrot.jbcrypt.BCrypt;
 import static scala.sys.process.BasicIO.input;
 import java.util.*;
+import org.hibernate.validator.constraints.NotBlank;
 
 
 public class Application extends Controller {
@@ -40,26 +41,37 @@ public class Application extends Controller {
   }
   //Form用内部クラス
   public static class SampleForm{
+    @NotBlank(message = "文字列を入力してください")
     public String userid;
+    @NotBlank(message = "文字列を入力してください")
     public String password;
   }
 
   public static class PwdchForm{
+    @NotBlank(message = "文字列を入力してください")
     public String oldpwd;
+    @NotBlank(message = "文字列を入力してください")
     public String newpwd;
+    @NotBlank(message = "文字列を入力してください")
     public String newpwd2;
   }
 
   public static class SignupForm{
+    @NotBlank(message = "文字列を入力してください")
     public String userid;
+    @NotBlank(message = "文字列を入力してください")
     public String username;
+    @NotBlank(message = "文字列を入力してください")
     public String userpwd;
+    @NotBlank(message = "文字列を入力してください")
     public String userpwd2;
     public boolean admin;
   }
 
   public static class EditUser{
+    @NotBlank(message = "文字列を入力してください")
     public String userid;
+    @NotBlank(message = "文字列を入力してください")
     public String username;
   }
 

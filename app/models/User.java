@@ -5,7 +5,7 @@ import javax.persistence.Id;
 import org.hibernate.validator.constraints.NotBlank;
 import play.db.ebean.Model;
 import play.db.ebean.Model.Finder;
-
+import org.hibernate.validator.constraints.NotBlank;
 /**
  *
  * @author r-tominaga
@@ -16,11 +16,13 @@ public class User extends Model{
     @Id
     public long id;
 
-    @NotBlank
+    @NotBlank(message = "文字列を入力してください")
     public String userid;
 
+    @NotBlank(message = "文字列を入力してください")
     public String username;
 
+    @NotBlank(message = "文字列を入力してください")
     public String password;
 
     public boolean admin; //ユーザータイプ
