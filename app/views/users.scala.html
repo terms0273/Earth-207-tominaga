@@ -1,14 +1,15 @@
 @(title: String, id: Long)
 @main("top"){
-  </head>
+  <head>
+    <link rel="stylesheet" media="screen" href="@routes.Assets.at("stylesheets/users.css")">
   <header id="header">
     <h1 class ="uk-heading-primary uk-text-muted">@title</h1>
   </header>
+  </head>
   <body>
-
     <div class="uk-child-width-1-3 uk-grid-small uk-grid-match" uk-grid>
     <div>
-        <div class="uk-grid-small uk-grid uk-card uk-card-default uk-card-body uk-child-width-5-1">
+        <div id="menu" class="uk-grid-small uk-grid uk-card uk-card-default uk-card-body uk-child-width-5-1">
           <div>
           <input type="button" value="ログアウト" class="uk-button uk-button-primary uk-margin-small-left uk-margin-top" onClick="location.href='@routes.Application.logout'">
           <br>
@@ -21,14 +22,22 @@
         </div>
     </div>
     <div>
-        <div class="uk-card uk-card-primary uk-card-body uk-width-auto">
+        <div id="contents" class="uk-card uk-card-primary uk-card-body uk-width-auto">
             <h3 class="uk-card-title">QUAE SIT SAPIENTIA DISCE LEGENDO</h3>
             <p></p>
         </div>
     </div>
   </div>
-
-
-
   </body>
+  <footer>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+
+  </footer>
 }

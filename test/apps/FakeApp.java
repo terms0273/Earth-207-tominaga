@@ -30,6 +30,7 @@ public class FakeApp{
   @Before
   public void createCleanDd(){
     initDd();
+
   }
 
   public static void initDd(){

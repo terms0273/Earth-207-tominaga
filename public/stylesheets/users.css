@@ -1,9 +1,15 @@
 head    {
-  background-color: #c6ffa7;
+  background-color: #45bec0;
 }
 body    {
-  background-color: #c6ffa7;
+  background-color: #45bec0;
 }
 footer {
-  background-color: #c6ffa7;
+  background-color: #45bec0;
+}
+#menu{
+  background-color: #e7a32f;
+}
+#contents{
+  background-color: #45be4a;
 }
