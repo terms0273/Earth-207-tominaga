@@ -1,0 +1,31 @@
+head    {
+  background-color: #08A3D0;
+}
+body    {
+  background-color: #BFE4FA;
+}
+
+.title{
+  color: #555555;
+  font-family: Optima;
+	font-size: 60px;
+	font-style: normal;
+	font-variant: normal;
+  font-weight: 600;
+	line-height: 100px;
+}
+.uk-button-default{
+  background-color: #44aeea;
+  font-family: Optima;
+  -webkit-transition: none;
+	transition: none;
+}
+.uk-button-default:hover{
+  background-color: #5CC0EB;
+}
+.uk-button-primary{
+  background-color: #2C64BA;
+}
+.uk-button-primary:hover{
+  background-color: #0080c9;
+}

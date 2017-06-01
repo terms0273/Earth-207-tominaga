@@ -1,12 +1,11 @@
 @(title: String, pwdform: Form[Application.SampleForm], id:Long)
 @import helper._
 
-@main("パスワード変更"){
+@main("パスワード変"){
   <header id="header">
-    <h1 class ="uk-heading-primary uk-text-muted">@title</h1>
+    <link rel="stylesheet" media="screen" href="@routes.Assets.at("stylesheets/editpwd.css")">
+    <h1 class ="title">CHANGE PASSWORD</h1>
   </header>
-  <body>
-
     @helper.form(action = CSRF(routes.Application.changePwd(id))){
       @(helper.inputPassword(
         pwdform("oldpwd"),
@@ -20,10 +19,9 @@
         pwdform("newpwd2"),
         '_label -> "CONFIRM NEW PASSWORD"
       ))
-      <input type="submit" class="uk-button uk-button-primary uk-margin-small-left uk-margin-top" value="変更" >
+      <input type="submit" class="uk-button uk-button-primary uk-margin-small-left uk-margin-top" value="CHANGE" >
     }
+    <input type="button" value="BACK" class="uk-button uk-button-primary uk-margin-small-left uk-margin-top" onClick="location.href='@routes.Application.goUsers(id)'">
+<footer><br></footer>
 
-    <input type="button" value="戻る" class="uk-button uk-button-primary uk-margin-small-left uk-margin-top" onClick="location.href='@routes.Application.goUsers(id)'">
-
-  </body>
 }

@@ -2,9 +2,13 @@
 @import helper._
 
 @main("User List"){
+  <link rel="stylesheet" media="screen" href="@routes.Assets.at("stylesheets/userlist.css")">
+  <head>
   <header id="header">
-    <h1 class ="uk-heading-primary uk-text-muted">@title</h1>
+    <h1 class ="uk-heading-primary uk-text-muted">USER LIST</h1>
   </header>
+</head>
+<body>
   <div id="contents">
     <table class="uk-table uk-table-hover">
         <thead>
@@ -24,5 +28,7 @@
             }
         </tbody>
     </table>
-  <input type="button" value="戻る" class="uk-button uk-button-primary uk-margin-small-left uk-margin-top" onClick="location.href='@routes.Application.goUsers(id)'">
+  <input type="button" value="BACK" class="uk-button uk-button-primary uk-margin-small-left uk-margin-top" onClick="location.href='@routes.Application.goUsers(id)'">
+  <br>
+</body>
 }

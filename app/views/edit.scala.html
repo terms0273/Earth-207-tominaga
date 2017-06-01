@@ -4,12 +4,12 @@
   <link rel="stylesheet" media="screen" href="@routes.Assets.at("stylesheets/edit.css")">
   <head>
   <header id="header">
-    <h1 class ="uk-heading-primary uk-text-muted">@title</h1>
+    <h1 class ="title">EDIT USER</h1>
   </header>
   </head>
   <body>
     <div id="contbody" class="uk-position-center uk-width-xlarge uk-overlay ">
-      <p>新しいUSER NAMEを設定してください</p>
+      <p class="p">Please Set Your New USER NAME</p>
       @form(action = CSRF(routes.Application.update(id))){
         @(inputText(
           field = editForm("userid"),
@@ -19,8 +19,8 @@
           field = editForm("username"),
           '_label -> "USER NAME"
         ))
-        <input type="submit" value="変更確定" class="uk-button uk-button-primary uk-margin-small-left uk-margin-top" onClick="location.href='@routes.Application.update(id)'">
-        <input type="button" value="戻る" class="uk-button uk-button-primary uk-margin-small-left uk-margin-top" onClick="location.href='@routes.Application.goUsers(id)'">
+        <input type="submit" value="CONFIRM" class="uk-button uk-button-primary uk-margin-small-left uk-margin-top" onClick="location.href='@routes.Application.update(id)'">
+        <input type="button" value="BACK" class="uk-button uk-button-primary uk-margin-small-left uk-margin-top" onClick="location.href='@routes.Application.goUsers(id)'">
       }
     </div>
   </body>

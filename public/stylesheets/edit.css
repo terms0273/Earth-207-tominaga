@@ -7,3 +7,15 @@ body    {
 #contbody{
   background-color: #71bbe3
 }
+.title{
+  color: #555555;
+  font-family: Optima;
+	font-size: 60px;
+	font-style: normal;
+	font-variant: normal;
+  font-weight: 600;
+	line-height: 100px;
+}
+.p{
+  font-family: Optima
+}
