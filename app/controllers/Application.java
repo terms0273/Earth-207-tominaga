@@ -244,4 +244,8 @@ public class Application extends Controller {
     }
     return null;
   }
+  public static Result weatherMap(){
+    return ok(weather.render());
+  }
+
 }
